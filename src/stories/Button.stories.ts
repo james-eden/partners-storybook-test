@@ -30,12 +30,12 @@ export const Primary: Story = {
   parameters: {
     // design: {
     //   type: "figma",
-    //   url: "https://www.figma.com/file/0WUPozGSQ5asK59AojEr89/storybook-%EC%97%B0%EB%8F%99?type=design&node-id=1-15&mode=design&t=FGl1gz4Up5yC7j1H-0",
+    //   url: "https://www.figma.com/file/0WUPozGSQ5asK59AojEr89/storybook-%EC%97%B0%EB%8F%99?type=design&node-id=1-15&mode=design&t=XZD0Fn3QjMxTOg7R-0",
     // },
     design: {
       type: "figspec",
-      url: "https://www.figma.com/file/0WUPozGSQ5asK59AojEr89/storybook-%EC%97%B0%EB%8F%99?type=design&node-id=1-15&mode=design&t=FGl1gz4Up5yC7j1H-0",
-      accessToken: "figd_O7hASl34f7scIocrJsT-07mMQBxVkquKnNPOdHnQ",
+      url: "https://www.figma.com/file/0WUPozGSQ5asK59AojEr89/storybook-%EC%97%B0%EB%8F%99?type=design&node-id=1-15&mode=design&t=XZD0Fn3QjMxTOg7R-0",
+      accessToken: "figd_xsXi1Y3ik0-3d9nCWqjMzHXulNvh41HzjrgTHLl7",
     },
   },
 };

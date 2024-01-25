@@ -1,7 +1,7 @@
 {
   "name": "partners-storybook-test",
   "version": "0.1.0",
-  "homepage": "http://james-eden.github.io/partners-storybook-test",
+  "homepage": "https://benxcorp.github.io/partners-storybook-test/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -27,7 +27,6 @@
     "chromatic": "npx chromatic --project-token=chpt_7bc15f6a86404f4",
     "predeploy": "npm run build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static"
-
   },
   "eslintConfig": {
     "extends": [
