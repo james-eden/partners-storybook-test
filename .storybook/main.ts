@@ -8,6 +8,8 @@ const config: StorybookConfig = {
     "@storybook/preset-create-react-app",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
+    "@storybook/addon-designs",
+    "@storybook/addon-measure",
   ],
   framework: {
     name: "@storybook/react-webpack5",
@@ -21,5 +23,9 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
+  features: {
+    buildStoriesJson: true,
+    storyStoreV7: true,
+  },
 };
 export default config;
