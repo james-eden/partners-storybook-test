@@ -35,7 +35,7 @@ export const Primary: Story = {
     design: {
       type: "figspec",
       url: "https://www.figma.com/file/0WUPozGSQ5asK59AojEr89/storybook-%EC%97%B0%EB%8F%99?type=design&node-id=1-15&mode=design&t=XZD0Fn3QjMxTOg7R-0",
-      accessToken: "figd_xsXi1Y3ik0-3d9nCWqjMzHXulNvh41HzjrgTHLl7",
+      accessToken: process.env.REACT_APP_SECRET_KEY,
     },
   },
 };
