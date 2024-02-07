@@ -1,0 +1,35 @@
+name: Run Tests and Merge to Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        if: startsWith(github.event.pull_request.head.ref, 'test-')
+        run: npm test
+
+      - name: Merge to main
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+        uses: actions/github-script@0.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const result = await github.repos.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base: 'main',
+              head: context.payload.pull_request.head.ref
+            })
+            console.log(result)
