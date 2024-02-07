@@ -17,7 +17,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        if: startsWith(github.event.pull_request.head.ref, 'test-')
+        if: startsWith(github.event.pull_request.head.ref, 'zeroheight-tokens-')
         run: npm test
 
       - name: Merge to main
