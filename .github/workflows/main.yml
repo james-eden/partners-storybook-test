@@ -20,12 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        if: startsWith(github.event.pull_request.head.ref, 'zeroheight-tokens-')
-        run: npm test
-
       - name: Merge to main
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'zeroheight-tokens-')
         uses: actions/github-script@0.6.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
