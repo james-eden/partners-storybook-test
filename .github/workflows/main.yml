@@ -1,27 +1,35 @@
-name: Build and Commit Pull Request
+name: Run Tests and Merge to Main
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-merge:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build
-      run: npm run build
-
-    - name: Commit changes
-      run: |
-        git config --global user.name 'Your Name'
-        git config --global user.email 'your.email@example.com'
-        git add .
-        git commit -m "Automated build for PR ${GITHUB_REF}"
-        git push origin HEAD:${GITHUB_REF}
+      - name: Merge to main
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'zeroheight-tokens-')
+        uses: actions/github-script@0.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const result = await github.repos.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base: context.payload.pull_request.head.ref,
+              head: context.payload.pull_request.head.ref
+            })
+            console.log(result)
