@@ -3,35 +3,14 @@ name: Run Tests and Merge to Main
 on:
   pull_request:
     types:
-      - opened
-    branches:
-      - "main"
+      - closed
 
 jobs:
-  build-and-merge:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: echo
-        run: echo "${{github.event.pull_request}}"
-
-      - name: Merge to main
-        if: startsWith(github.event.pull_request.base, 'zeroheight-tokens-')
-        uses: actions/github-script@0.6.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const result = await github.repos.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              base: context.payload.pull_request.head.ref,
-              head: context.payload.pull_request.head.ref
-            })
-            console.log(result)
+      - run: |
+          echo The PR was merged
+          echo ${{github.event.pull_request.base.ref}}
+          echo ${{github.event.pull_request.head.ref}}
