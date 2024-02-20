@@ -19,8 +19,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      - name: echo
+        run: echo "${{github.event.pull_request.base}}"
 
       - name: Merge to main
         if: startsWith(github.event.pull_request.base, 'zeroheight-tokens-')
