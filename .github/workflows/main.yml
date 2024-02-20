@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: echo
-        run: echo "${{github.event.pull_request.base}}"
+        run: echo "${{github.event.pull_request}}"
 
       - name: Merge to main
         if: startsWith(github.event.pull_request.base, 'zeroheight-tokens-')
